@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Used to split cells from excel sheet images and extracts data.
 
 ## Development
 
