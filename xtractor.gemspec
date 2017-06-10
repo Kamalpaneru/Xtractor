@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Splits cells in an excelsheet images and extracts data.}
   spec.description   = %q{Xtractor was developed as a need to my own problem of inserting handwritten data from an excelsheet printed paper to excel.And it does the same as described. }
-  spec.homepage      = "Coming Soon"
+  spec.homepage      = 'http://rubygems.org/gems/xtractor'
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
