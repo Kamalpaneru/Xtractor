@@ -21,7 +21,14 @@ Or install it yourself as:
 ## Usage
 
 Used to split cells from excel sheet images and extracts data. <br>
-  NOTE: Tesseract didn't work as smoothly as I imagined it to be.
+  NOTE: Tesseract didn't work as smoothly as I imagined it to be.<br> <br>
+
+  ```ruby
+    require 'xtractor'
+
+    Xtractor::Execute.new('Image_Filename').start
+
+  ```
 
 ## Contributing
 
