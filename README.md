@@ -26,7 +26,7 @@ Used to split cells from excel sheet images and extracts data. <br>
   ```ruby
     require 'xtractor'
 
-    Xtractor::Execute.new('Image_Filename').start
+    Xtractor::Execute.new('Image_Filename')
 
   ```
 
