@@ -23,7 +23,7 @@ module Xtractor
     end
 
     def start(img)
-      store_line_rows = (0..img.rows-1).inject([]) do |arr, line_index|
+      store_line_rows = (0...img.rows).inject([]) do |arr, line_index|
       threshold = (img.columns*0.10).floor
       arr << line_index if img.get_pixels(0, line_index, (threshold), 1).select{|pixel|
       pixel.red < 63000 }.length >= threshold*0.95
@@ -31,7 +31,7 @@ module Xtractor
       end
 
 
-      store_line_columns = (0..img.columns-1).inject([])do |arr, line_index|
+      store_line_columns = (0...img.columns).inject([])do |arr, line_index|
       threshold = (img.rows*0.10).floor
       arr << line_index if img.get_pixels(line_index, 0, 1, (threshold)).select{|pixel|
       pixel.red < 63000 }.length >= threshold*0.95
@@ -62,7 +62,7 @@ module Xtractor
 
       Dir.mkdir('cell-files') if !File.exists?('cell-files')
 
-      output_file = File.open('table.txt', 'w')
+      output_file = File.open('table.tsv', 'w')
 
       rows_filter[0..-2].each_with_index do |row, i|
         text_row = []
