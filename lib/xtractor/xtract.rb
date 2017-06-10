@@ -62,7 +62,7 @@ module Xtractor
 
       Dir.mkdir('cell-files') if !File.exists?('cell-files')
 
-      output_file = File.open('table.txt', 'w')
+      output_file = File.open('table.tsv', 'w')
 
       rows_filter[0..-2].each_with_index do |row, i|
         text_row = []
