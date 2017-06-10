@@ -20,7 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
-Used to split cells from excel sheet images and extracts data.
+Used to split cells from excel sheet images and extracts data. <br>
+  NOTE: Tesseract didn't work as smoothly as I imagined it to be.
 
 ## Contributing
 
