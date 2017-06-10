@@ -6,12 +6,23 @@ module Xtractor
 
     def initialize(image)
       img = Magick::Image::read(image).first
+      if %w(TIFF).include? img.format
+        crop_throw(img)
+      else
+        img.write('Conv_img.tif')
+        img = Magick::Image::read('Conv_img.tif').first
+        crop_throw(img)
+      end
+    end
+
+    def crop_throw(img)
       img = img.resize_to_fit(2500,906)
       box = img.bounding_box
       img.crop!(box.x, box.y, box.width, box.height)
+      start(img)
     end
 
-    def start
+    def start(img)
       store_line_rows = (0..img.rows-1).inject([]) do |arr, line_index|
       threshold = (img.columns*0.10).floor
       arr << line_index if img.get_pixels(0, line_index, (threshold), 1).select{|pixel|
@@ -51,7 +62,7 @@ module Xtractor
 
       Dir.mkdir('cell-files') if !File.exists?('cell-files')
 
-      output_file = File.open('1-table.txt', 'w')
+      output_file = File.open('table.txt', 'w')
 
       rows_filter[0..-2].each_with_index do |row, i|
         text_row = []
