@@ -1,8 +1,11 @@
 require "rubygems"
 require "rmagick"
+require "request"
 
 module Xtractor
   class Execute
+
+    @directory = File.expand_path("cell-files",File.dirname(__FILE__))
 
     def initialize(image)
       img = Magick::Image::read(image).first
@@ -60,32 +63,34 @@ module Xtractor
       end
 
 
+
       Dir.mkdir('cell-files') if !File.exists?('cell-files')
 
       output_file = File.open('table.tsv', 'w')
 
       rows_filter[0..-2].each_with_index do |row, i|
-        text_row = []
-      columns_filter[0..-2].each_with_index do |column, j|
-        x,y= column[1], row[1]
-        w,h= columns_filter[j+1][0]-x, rows_filter[i+1][0]-y
 
-      Magick::Image.constitute(w, h, "RGB", img.get_pixels(x,y,w,h).map{ |pixel|
-          [pixel.red, pixel.green, pixel.blue]}.flatten).write("cell-files/#{j}x#{i}.tif") do |out|
+        columns_filter[0..-2].each_with_index do |column, j|
+          x,y= column[1], row[1]
+          w,h= columns_filter[j+1][0]-x, rows_filter[i+1][0]-y
+
+          Magick::Image.constitute(w, h, "RGB", img.get_pixels(x,y,w,h).map{ |pixel|
+          [pixel.red, pixel.green, pixel.blue]}.flatten).write("cell-files/#{j}x#{i}.jpg") do |out|
               out.depth=8
           end
 
-      `tesseract cell-files/#{j}x#{i}.tif cell-files/#{j}x#{i} `
+          r_image = Magick::Image::read("#{@directory}/#{j}x#{i}.jpg").first
+          res_image = r_image.(r_image.columns,55)
 
+          res_image.write("#{@directory}/#{j}x#{i}.jpg") do
+            self.quality = 100
+          end
 
-      text_row << File.open("cell-files/#{j}x#{i}.txt", 'r').readlines.map{|line| line.strip}.join(" ")
-
-      end
-
-      output_file.puts( text_row.join("\t"))
+        end
       end
       output_file.close
     end
 
   end
 end
+
