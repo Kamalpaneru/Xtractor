@@ -1,5 +1,6 @@
 require 'net/http'
 
+@directory = File.expand_path("cell-files",File.dirname(__FILE__))
 uri = URI('https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr')
 uri.query = URI.encode_www_form({
 
@@ -13,7 +14,10 @@ request['Content-Type'] = 'application/octet-stream'
 
 request['Ocp-Apim-Subscription-Key'] = '43f80a0ab4d5441d8e0d292e19e5d3c9'
 
-request.body = File.binread('')
+
+Dir.glob("#{@directory}/*.{jpg.png.gif}") do |crop_image|
+  request.body = File.binread(crop_image)
+end
 
 
 response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
