@@ -80,7 +80,7 @@ module Xtractor
           end
 
           r_image = Magick::Image::read("#{@directory}/#{j}x#{i}.jpg").first
-          res_image = r_image.(r_image.columns,55)
+           res_image = r_image.resize(r_image.columns,55)
 
           res_image.write("#{@directory}/#{j}x#{i}.jpg") do
             self.quality = 100
