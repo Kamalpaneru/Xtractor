@@ -1,7 +1,7 @@
 # Xtractor
 <img src="https://badge.fury.io/rb/xtractor.svg" alt="Gem Version" />
 
-Xtractor was developed as a need to my own problem of inserting handwritten data from an excelsheet image to excel.And it does the same as described.
+Xtractor was developed as a need to my own problem of inserting  data from an excelsheet image to excel.And it does the same as described.
 
 ## Installation
 
