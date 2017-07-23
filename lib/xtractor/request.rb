@@ -26,9 +26,8 @@ def request_API
     json_file = File.open('json_data.tsv','w')
 
     json_file.puts(response.body)
-
-    json_file.close
   end
+  json_file.close
 end
 
 
