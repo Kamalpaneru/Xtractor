@@ -34,8 +34,6 @@ Used to split cells from excel sheet images and extracts data. <br>
     Xtractor::Execute.new('Image_Filename')
 
   ```
-## Sample Image
-![image_final](https://user-images.githubusercontent.com/13826932/27982128-beed0218-63ba-11e7-8a0e-1bd769183e7d.png)
 
 ## Contributing
 
