@@ -34,6 +34,10 @@ Used to split cells from excel sheet images and extracts data. <br>
 
 ![image_f3](https://user-images.githubusercontent.com/13826932/31273813-03dde45a-aab0-11e7-942f-c77202f996d1.jpg)
 
+## Generate API key 
+  Replace API_KEY in lib/xtractor/request.rb with your Key.<br>
+    ```https://azure.microsoft.com/en-gb/try/cognitive-services/ ```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/Kamalpaneru/Xtractor-Gem. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
