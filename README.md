@@ -22,7 +22,7 @@ Or install it yourself as:
 ## Usage
 
 Used to split cells from excel sheet images and extracts data. <br>
-  NOTE: Tesseract didn't work as smoothly as I imagined it to be.<br> <br>
+  NOTE: I've replaced Tesseract with Azure Computer Vision API(Not perfect but a significant improvement though).<br> <br>
 
   ```ruby
     require 'xtractor'
