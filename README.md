@@ -30,6 +30,9 @@ Used to split cells from excel sheet images and extracts data. <br>
     Xtractor::Execute.new('Image_Filename')
 
   ```
+## Sample Image
+
+![image_f3](https://user-images.githubusercontent.com/13826932/31273813-03dde45a-aab0-11e7-942f-c77202f996d1.jpg)
 
 ## Contributing
 
