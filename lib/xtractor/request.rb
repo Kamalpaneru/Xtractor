@@ -18,7 +18,7 @@ class Azure_API
 
     request['Content-Type'] = 'application/octet-stream'
 
-    request['Ocp-Apim-Subscription-Key'] = "4ba1e7dfca694ca7bfce73b99988395c"
+    request['Ocp-Apim-Subscription-Key'] = "API_KEY"
 
     collect = Hash.new
 
