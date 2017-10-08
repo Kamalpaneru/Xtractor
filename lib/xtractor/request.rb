@@ -48,17 +48,6 @@ class Azure_API
       end
     end
 
-def  out_final(img)
-      text_row = []
-      output_file = File.open('table.tsv', 'w')
-      rows_filter(img)[0..-2].each_with_index do |row, i|
-          columns_filter(img)[0..-2].each_with_index do |column, j|
-              text_row << File.open("cell-files/#{j}x#{i}.txt", 'r').readlines.map{|line| line.strip}.join(" ")
-          end
-          output_file.puts( text_row.join("\t"))
-      end
-      output_file.close
-    end
 end
 
 
