@@ -73,7 +73,7 @@ module Xtractor
         columns_filter(img)[0..-2].each_with_index do |column, j|
           x,y= column[1], row[1]
           w,h= columns_filter(img)[j+1][0]-x, rows_filter(img)[i+1][0]-y
-          puts "#{j}x#{i}"
+
           Magick::Image.constitute(w, h, "RGB", img.get_pixels(x,y,w,h).map{ |pixel|
           [pixel.red, pixel.green, pixel.blue]}.flatten).write("cell-files/#{j}x#{i}.jpg") do |out|
               out.depth=8
@@ -100,7 +100,7 @@ module Xtractor
     def  out_final(img)
       output_file = File.open('table.tsv', 'w')
       rows_filter(img)[0..-2].each_with_index do |row, i|
-         text_row = []
+        text_row = []
           columns_filter(img)[0..-2].each_with_index do |column, j|
               text_row << File.open("cell-files/#{j}x#{i}.txt", 'r').readlines.map{|line| line.strip}.join(" ")
           end
