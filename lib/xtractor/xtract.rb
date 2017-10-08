@@ -5,8 +5,6 @@ require_relative "request"
 module Xtractor
   class Execute
 
-    @directory = File.expand_path("cell-files", File.dirname(__FILE__))
-
     def initialize(image)
       img = Magick::Image::read(image).first
 
@@ -67,6 +65,7 @@ module Xtractor
     end
 
 
+
     def start(img)
       Dir.mkdir('cell-files') if !File.exists?('cell-files')
 
@@ -74,7 +73,7 @@ module Xtractor
         columns_filter(img)[0..-2].each_with_index do |column, j|
           x,y= column[1], row[1]
           w,h= columns_filter(img)[j+1][0]-x, rows_filter(img)[i+1][0]-y
-
+          puts "#{j}x#{i}"
           Magick::Image.constitute(w, h, "RGB", img.get_pixels(x,y,w,h).map{ |pixel|
           [pixel.red, pixel.green, pixel.blue]}.flatten).write("cell-files/#{j}x#{i}.jpg") do |out|
               out.depth=8
@@ -89,11 +88,25 @@ module Xtractor
 
         end
       end
-      collect_hash
+      collect_hash(img)
     end
 
-    def collect_hash
-     request_API
+    def collect_hash(img)
+      api = Azure_API.new
+      api.request_API
+      out_final(img)
+    end
+
+    def  out_final(img)
+      output_file = File.open('table.tsv', 'w')
+      rows_filter(img)[0..-2].each_with_index do |row, i|
+         text_row = []
+          columns_filter(img)[0..-2].each_with_index do |column, j|
+              text_row << File.open("cell-files/#{j}x#{i}.txt", 'r').readlines.map{|line| line.strip}.join(" ")
+          end
+          output_file.puts( text_row.join("\t"))
+      end
+      output_file.close
     end
 
   end
