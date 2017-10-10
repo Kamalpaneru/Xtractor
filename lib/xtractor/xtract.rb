@@ -67,7 +67,7 @@ module Xtractor
 
 
     def start(img)
-      Dir.mkdir('cell-files') if !File.exists?('cell-files')
+      Dir.mkdir('cell-files') if !File.exist?('cell-files')
 
       rows_filter(img)[0..-2].each_with_index do |row, i|
         columns_filter(img)[0..-2].each_with_index do |column, j|
