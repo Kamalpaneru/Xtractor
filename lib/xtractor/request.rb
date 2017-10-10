@@ -40,7 +40,7 @@ class Azure_API
 
           File.open("cell-files/#{crop_image[11..-5]}.txt", "w") do |data|
               data.write(collect[crop_image[0..-5]])
-              end
+          end
       end
-    end
+  end
 end
