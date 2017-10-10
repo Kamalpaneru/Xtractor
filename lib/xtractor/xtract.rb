@@ -99,9 +99,9 @@ module Xtractor
 
     def  out_final(img)
       output_file = File.open('table.tsv', 'w')
-      rows_filter(img)[0..-2].each_with_index do |row, i|
+      rows_filter(img)[0..-2].each_with_index do |_row, i|
         text_row = []
-          columns_filter(img)[0..-2].each_with_index do |column, j|
+          columns_filter(img)[0..-2].each_with_index do |_column, j|
               text_row << File.open("cell-files/#{j}x#{i}.txt", 'r').readlines.map{|line| line.strip}.join(" ")
           end
           output_file.puts( text_row.join("\t"))
