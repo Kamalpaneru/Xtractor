@@ -1,5 +1,6 @@
 # Xtractor
-<img src="https://badge.fury.io/rb/xtractor.svg" alt="Gem Version" />
+<img src="https://badge.fury.io/rb/xtractor.svg" alt="Gem Version" /> <img src="https://travis-ci.org/Kamalpaneru/Xtractor.svg?branch=master" alt="Build" />
+
 
 Xtractor was developed as a need to the problem of inserting data from an excelsheet image to excel.And it does the same as described.
 
@@ -34,7 +35,7 @@ Used to split cells from excel sheet images and extracts data. <br>
 
 ![image_f3](https://user-images.githubusercontent.com/13826932/31273813-03dde45a-aab0-11e7-942f-c77202f996d1.jpg)
 
-## Generate API key 
+## Generate API key
   Replace API_KEY in ```lib/xtractor/request.rb ``` with your Key.<br>
     ```https://azure.microsoft.com/en-gb/try/cognitive-services/ ```
 
