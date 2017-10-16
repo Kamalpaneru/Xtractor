@@ -11,9 +11,9 @@ class Azure_API
         'detectOrientation ' => 'true'
       })
 
-      request['Ocp-Apim-Subscription-Key'] = "API_KEY"
-
       request = Net::HTTP::Post.new(uri.request_uri)
+
+      request['Ocp-Apim-Subscription-Key'] = "API_KEY"
 
       request['Content-Type'] = 'application/octet-stream'
 
