@@ -1,4 +1,4 @@
-sudo: false
+sudo: enabled
 language: ruby
 rvm:
   - 2.3.1
