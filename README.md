@@ -1,5 +1,5 @@
 # Xtractor
-<img src="https://badge.fury.io/rb/xtractor.svg" alt="Gem Version" /> <img src="https://travis-ci.org/Kamalpaneru/Xtractor.svg?branch=master" alt="Build" />
+<img src="https://badge.fury.io/rb/xtractor.svg" /> <img src="https://travis-ci.org/Kamalpaneru/Xtractor.svg?branch=master" alt="Build" />
 
 
 Xtractor was developed as a need to the problem of inserting data from an excelsheet image to excel.And it does the same as described.
