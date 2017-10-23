@@ -3,7 +3,7 @@ require 'json'
 
 class Azure_API
 
-  def request_API
+  def request_API(api_key)
       uri = URI('https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr')
       uri.query = URI.encode_www_form({
 
@@ -13,7 +13,7 @@ class Azure_API
 
       request = Net::HTTP::Post.new(uri.request_uri)
 
-      request['Ocp-Apim-Subscription-Key'] = "API_KEY"
+      request['Ocp-Apim-Subscription-Key'] = api_key
 
       request['Content-Type'] = 'application/octet-stream'
 
