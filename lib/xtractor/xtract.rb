@@ -14,13 +14,13 @@ module Xtractor
     def  begins
        img = Magick::Image::read(@image).first
 
-      if %w(TIFF).include? img.format
-        crop_throw(img)
-      else
-        img.write('Conv_img.tif')
-        img = Magick::Image::read('Conv_img.tif').first
-        crop_throw(img)
-      end
+        if %w(TIFF).include? img.format
+          crop_throw(img)
+        else
+          img.write('Conv_img.tif')
+          img = Magick::Image::read('Conv_img.tif').first
+          crop_throw(img)
+        end
     end
 
     def crop_throw(img)
