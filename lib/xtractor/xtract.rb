@@ -6,22 +6,28 @@ module Xtractor
   class Execute
 
     def initialize(image, api_key)
-      img = Magick::Image::read(image).first
+      @image = image
+      @api_key = api_key
+      begins
+    end
+
+    def  begins
+       img = Magick::Image::read(@image).first
 
       if %w(TIFF).include? img.format
-        crop_throw(img, api_key)
+        crop_throw(img)
       else
         img.write('Conv_img.tif')
         img = Magick::Image::read('Conv_img.tif').first
-        crop_throw(img, api_key)
+        crop_throw(img,)
       end
     end
 
-    def crop_throw(*img)
-       image = img[0].resize_to_fit(2500,906)
+    def crop_throw(img)
+       image = img.resize_to_fit(2500,906)
        box = image.bounding_box
        image.crop!(box.x, box.y, box.width, box.height)
-      start(image, img[1])
+      start(image)
     end
 
     def store_line_rows(img)
@@ -66,7 +72,7 @@ module Xtractor
 
 
 
-    def start(img, api_key)
+    def start(img)
       Dir.mkdir('cell-files') if !File.exist?('cell-files')
 
       rows_filter(img)[0..-2].each_with_index do |row, i|
@@ -88,7 +94,7 @@ module Xtractor
 
         end
       end
-      collect_hash(img, api_key)
+      collect_hash(img, @api_key)
     end
 
     def collect_hash(*args)
