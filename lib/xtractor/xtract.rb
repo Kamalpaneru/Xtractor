@@ -8,7 +8,7 @@ module Xtractor
     def initialize(image, api_key)
       @image = image
       @api_key = api_key
-      begins
+     begins
     end
 
     def  begins
@@ -19,7 +19,7 @@ module Xtractor
       else
         img.write('Conv_img.tif')
         img = Magick::Image::read('Conv_img.tif').first
-        crop_throw(img,)
+        crop_throw(img)
       end
     end
 
