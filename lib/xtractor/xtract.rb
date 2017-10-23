@@ -5,23 +5,23 @@ require_relative "request"
 module Xtractor
   class Execute
 
-    def initialize(image)
+    def initialize(image, api_key)
       img = Magick::Image::read(image).first
 
       if %w(TIFF).include? img.format
-        crop_throw(img)
+        crop_throw(img, api_key)
       else
         img.write('Conv_img.tif')
         img = Magick::Image::read('Conv_img.tif').first
-        crop_throw(img)
+        crop_throw(img, api_key)
       end
     end
 
-    def crop_throw(img)
-       img = img.resize_to_fit(2500,906)
-       box = img.bounding_box
-       img.crop!(box.x, box.y, box.width, box.height)
-      start(img)
+    def crop_throw(*img)
+       image = img[0].resize_to_fit(2500,906)
+       box = image.bounding_box
+       image.crop!(box.x, box.y, box.width, box.height)
+      start(image, img[1])
     end
 
     def store_line_rows(img)
@@ -66,7 +66,7 @@ module Xtractor
 
 
 
-    def start(img)
+    def start(img, api_key)
       Dir.mkdir('cell-files') if !File.exist?('cell-files')
 
       rows_filter(img)[0..-2].each_with_index do |row, i|
@@ -88,13 +88,13 @@ module Xtractor
 
         end
       end
-      collect_hash(img)
+      collect_hash(img, api_key)
     end
 
-    def collect_hash(img)
+    def collect_hash(*args)
       api = Azure_API.new
-      api.request_API
-      out_final(img)
+      api.request_API(args[1])
+      out_final(args[0])
     end
 
     def  out_final(img)
