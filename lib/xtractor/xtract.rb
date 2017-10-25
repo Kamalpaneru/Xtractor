@@ -8,10 +8,9 @@ module Xtractor
     def initialize(image, api_key)
       @image = image
       @api_key = api_key
-     begins
     end
 
-    def  begins
+    def  begin_process
        img = Magick::Image::read(@image).first
 
         if %w(TIFF).include? img.format
